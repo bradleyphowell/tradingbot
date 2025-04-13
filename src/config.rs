@@ -1,0 +1,6 @@
+pub const SLA_SPREAD: f64 = 0.0025; // 25 basis point\
+pub const SLA_DEPTH: f64 = 50.0; // 50 lots
+pub const LIQ_RANGE: f64 = 0.02; // 2 percent
+pub const START_BASE_INVENTORY: f64 = 100.0; // 100 base assets
+pub const START_QUOTE_INVENTORY: f64 = 10000.0; // 10,000 quote assets
+pub const RISK_LIMIT: f64 = 10.0; // 1000 base assets
