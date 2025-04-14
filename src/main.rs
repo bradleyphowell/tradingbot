@@ -33,6 +33,15 @@ fn main() {
     
 \********************************************************************************************/
 
+let orderbook: Vec<Vec<f64>> = order_books::ob_gen::make_ob(50, 100.0, 101.0);
+
+let ob_vol_weight = pt::expo_decay(orderbook, 0.02);
+
+let (mut base_assets, mut quote_assets) = inventory::inventory_balance(base_assets, quote_assets, &trade);
+
+let inventory_skew: f64 = 0.5 + ((config::START_BASE_INVENTORY - base_assets)/(config::RISK_LIMIT * 2.0));
+
+
 /*********************************Testing the orderbook skew*********************************\
 
     let orderbook: Vec<Vec<f64>> = order_books::ob_gen::make_ob(100, 100.0, 101.0);
@@ -66,13 +75,14 @@ fn main() {
 
 \********************************************************************************************/
 
+let mut bidness = bidness_calc(inventory_skew, ob_vol_weight, of_balance, config::A, config::B, config::C);
 
 
 }
 
-fn bidness_calc(inventory_skew, ob_vol_weight, of_balance, A, B, C) -> f64 {
+fn bidness_calc(inventory_skew: f64, ob_vol_weight: f64, of_balance: f64, A: f64, B: f64, C: f64) -> f64 {
 
     let mut bidness = 0.0;
-    
+
 
 }
