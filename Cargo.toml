@@ -5,10 +5,9 @@ edition = "2024"
 
 [dependencies]
 rand = "0.8"
-tokio = { version = "1", features = ["full"]}
-tokio-tungstenite = { version = "0.20.1", features = ["rustls-tls-webpki"]}
+tokio = { version = "1", features = ["full"] }
+tokio-tungstenite = { version = "0.20.1", features = ["native-tls"] }  # 👈 pick this TLS backend
 tungstenite = "0.20"
+futures-util = "0.3"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
-futures = "0.3"
-futures-util = "0.3.31"
