@@ -6,6 +6,7 @@ mod order_books {
 mod pt;
 mod inventory;
 mod config;
+mod data_collector;
 
 struct Trade {
     side: String,
@@ -13,7 +14,10 @@ struct Trade {
     price: f64, 
 }
 
-fn main() {
+#[tokio::main]
+async fn main() {
+
+    data_collector::connect_to_kraken().await;
 
 /************Testing module ob_gen.rs works and provides accurate orderbooks ****************\ 
  
@@ -33,13 +37,13 @@ fn main() {
     
 \********************************************************************************************/
 
-let orderbook: Vec<Vec<f64>> = order_books::ob_gen::make_ob(50, 100.0, 101.0);
+//let orderbook: Vec<Vec<f64>> = order_books::ob_gen::make_ob(50, 100.0, 101.0);
 
-let ob_vol_weight = pt::expo_decay(orderbook, 0.02);
+//let ob_vol_weight = pt::expo_decay(orderbook, 0.02);
 
-let (mut base_assets, mut quote_assets) = inventory::inventory_balance(base_assets, quote_assets, &trade);
+//let (mut base_assets, mut quote_assets) = inventory::inventory_balance(base_assets, quote_assets, &trade);
 
-let inventory_skew: f64 = 0.5 + ((config::START_BASE_INVENTORY - base_assets)/(config::RISK_LIMIT * 2.0));
+//let inventory_skew: f64 = 0.5 + ((config::START_BASE_INVENTORY - base_assets)/(config::RISK_LIMIT * 2.0));
 
 
 /*********************************Testing the orderbook skew*********************************\
@@ -75,10 +79,12 @@ let inventory_skew: f64 = 0.5 + ((config::START_BASE_INVENTORY - base_assets)/(c
 
 \********************************************************************************************/
 
-let mut bidness = bidness_calc(inventory_skew, ob_vol_weight, of_balance, config::A, config::B, config::C);
+//let mut bidness = bidness_calc(inventory_skew, ob_vol_weight, of_balance, config::A, config::B, config::C);
 
 
 }
+
+/***************************************************************************************************************\
 
 fn bidness_calc(inventory_skew: f64, ob_vol_weight: f64, of_balance: f64, A: f64, B: f64, C: f64) -> f64 {
 
@@ -86,3 +92,5 @@ fn bidness_calc(inventory_skew: f64, ob_vol_weight: f64, of_balance: f64, A: f64
 
 
 }
+
+\***************************************************************************************************************/

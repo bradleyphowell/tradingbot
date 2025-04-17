@@ -1,7 +1,7 @@
 // Function to calculate the orderbook imbalance
 // this is done by applying an eponential decay to the weighting of volume placed further away from
 // the midprice.
-
+/* 
 pub fn expo_decay(orderbook: Vec<Vec<f64>>, depth: f64) -> f64 {
     let mid = (orderbook[0][1] + orderbook [0][2]) / 2.0;
     let bo_spread = orderbook[0][2] - orderbook[0][1];
@@ -23,3 +23,5 @@ pub fn expo_decay(orderbook: Vec<Vec<f64>>, depth: f64) -> f64 {
     //println!("weighted mid is {}", weighted_mid);
     return orderbook_skew;
 }
+
+*/
